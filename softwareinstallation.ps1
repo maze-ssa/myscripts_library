@@ -1,3 +1,4 @@
+#Copy & Install Software from a mapped network Drive
 $softwareName = "example.exe"
 $networkPath = "\\server\share\$softwareName"
 $destination = "D:\Software\"
