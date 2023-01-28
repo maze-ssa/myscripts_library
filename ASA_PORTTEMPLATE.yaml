@@ -1,0 +1,64 @@
+---
+- name: "Cisco ASA Firewall Interface Monitoring"
+  version: 1.0
+  author: "John Doe"
+  templates:
+    - template_cisco_asa_interface
+  discovery_rules:
+    - name: "Cisco ASA Interface Discovery"
+      type: "SNMP"
+      key: "snmp.ifname"
+      snmp_oid: "IF-MIB::ifName"
+      snmp_community: "public"
+      update_interval: 60
+      snmp_port: 161
+  items:
+    - name: "Cisco ASA Interface Status"
+      type: "SNMP"
+      key: "snmp.ifstatus[{#IFNAME}]"
+      snmp_oid: "IF-MIB::ifOperStatus.{#IFNUM}"
+      snmp_community: "public"
+      update_interval: 60
+      snmp_port: 161
+      snmpv3_context: ""
+      snmpv3_securityname: ""
+      snmpv3_securitylevel: ""
+      snmpv3_authprotocol: ""
+      snmpv3_authpassphrase: ""
+      snmpv3_privprotocol: ""
+      snmpv3_privpassphrase: ""
+      value_type: "3"
+      data_type: "0"
+      units: "Up/Down"
+      delta: "0"
+      multiplier: "0"
+      formula: "0"
+      history: "90"
+      trends: "365"
+      delay: "60"
+      allowed_hosts: ""
+      snmpv3_contextname: ""
+      snmpv3_securityengineid: ""
+      snmpv3_contextengineid: ""
+  triggers:
+    - name: "Cisco ASA Interface Down"
+      expression: "{template_cisco_asa_interface:snmp.ifstatus[{#IFNAME}].last(0)}=2"
+      priority: "High"
+      comments: "Interface {#IFNAME} is down"
+      url: ""
+  graphs:
+    - name: "Cisco ASA Interface Traffic"
+      items:
+        - name: "Cisco ASA Interface Inbound Traffic"
+          key: "snmp.ifin[{#IFNAME}]"
+        - name: "Cisco ASA Interface Outbound Traffic"
+          key: "snmp.ifout[{#IFNAME}]"
+      type: "Line"
+      width: "900"
+      height: "200"
+      yaxismin: "0"
+      yaxismax: "auto"
+      show_work_period: "1"
+      show_triggers: "1"
+      percent_left: "0"
+      percent_right: "0"
