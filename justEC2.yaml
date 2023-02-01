@@ -1,94 +1,16 @@
-{
-  "AWSTemplateFormatVersion": "2010-09-09",
-  "Resources": {
-    "AutoScalingGroup": {
-      "Type": "AWS::AutoScaling::AutoScalingGroup",
-      "Properties": {
-        "VPCZoneIdentifier": [
-          "subnet-01234567890abcdef0",
-          "subnet-01234567890abcdef1"
-        ],
-        "LaunchConfigurationName": { "Ref": "LaunchConfig" },
-        "MinSize": "2",
-        "MaxSize": "5",
-        "DesiredCapacity": "2",
-        "Tags": [
-          {
-            "Key": "Name",
-            "Value": "MyAutoScalingGroup",
-            "PropagateAtLaunch": true
-          }
-        ]
-      }
-    },
-    "LaunchConfig": {
-      "Type": "AWS::AutoScaling::LaunchConfiguration",
-      "Properties": {
-        "InstanceType": "t2.micro",
-        "ImageId": "ami-0ff8a91507f77f867",
-        "KeyName": "myKey",
-        "SecurityGroups": [
-          { "Ref": "InstanceSecurityGroup" }
-        ],
-        "UserData": {
-          "Fn::Base64": {
-            "Fn::Join": [
-              "",
-              [
-                "#!/bin/bash\n",
-                "echo 'This is user data'\n"
-              ]
-            ]
-          }
-        }
-      }
-    },
-    "InstanceSecurityGroup": {
-      "Type": "AWS::EC2::SecurityGroup",
-      "Properties": {
-        "GroupDescription": "Security group for instances",
-        "SecurityGroupIngress": [
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 22,
-            "ToPort": 22,
-            "CidrIp": "0.0.0.0/0"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 80,
-            "ToPort": 80,
-            "CidrIp": "0.0.0.0/0"
-          },
-          {
-            "IpProtocol": "tcp",
-            "FromPort": 443,
-            "ToPort": 443,
-            "CidrIp": "0.0.0.0/0"
-          }
-        ]
-      }
-    },
-    "LoadBalancer": {
-      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
-      "Properties": {
-        "Name": "myLoadBalancer",
-        "Subnets": [
-          "subnet-01234567890abcdef0",
-          "subnet-01234567890abcdef1"
-        ],
-        "SecurityGroups": [
-          { "Ref": "InstanceSecurityGroup" }
-        ]
-      }
-    },
-    "TargetGroup": {
-      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
-      "Properties": {
-        "Name": "myTargetGroup",
-        "Protocol": "HTTP",
-        "Port": 80
-      }
-    }
-  }
-}
+---
+Resources:
+  EC2Instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvaliabilityZone: us-east-1a
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0
+      KeyName: myKeyPair
+
+  EC2Instance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-0c55b159cbfafe1f0
+      KeyName: myKeyPair
