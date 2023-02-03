@@ -5,12 +5,12 @@ Resources:
     Properties:
       AvaliabilityZone: us-east-1a
       InstanceType: t2.micro
-      ImageId: ami-0c55b159cbfafe1f0
+      ImageId: ami-08be951cec06726be
       KeyName: myKeyPair
 
   EC2Instance2:
     Type: AWS::EC2::Instance
     Properties:
       InstanceType: t2.micro
-      ImageId: ami-0c55b159cbfafe1f0
+      ImageId: ami-08be951cec06726be
       KeyName: myKeyPair
