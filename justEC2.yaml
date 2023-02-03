@@ -7,7 +7,7 @@ Resources:
       InstanceType: t2.micro
       ImageId: ami-08be951cec06726be
       KeyName: zabbixkp
-      SecurityGroup: cloudformation_sg
+      SecurityGroup: cloudformationsg
 
   EC2Instance2:
     Type: AWS::EC2::Instance
@@ -15,9 +15,9 @@ Resources:
       InstanceType: ap-southeast-1b
       ImageId: ami-08be951cec06726be
       KeyName: zabbixkp
-      SecurityGroup: cloudformation_sg
+      SecurityGroup: cloudformationsg
 
-  cloudformation_sg:
+  cloudformationsg:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Allow SSH Service
