@@ -3,14 +3,26 @@ Resources:
   EC2Instance1:
     Type: AWS::EC2::Instance
     Properties:
-      AvaliabilityZone: us-east-1a
+      AvaliabilityZone: ap-southeast-1b
       InstanceType: t2.micro
       ImageId: ami-08be951cec06726be
-      KeyName: myKeyPair
+      KeyName: zabbixkp
 
   EC2Instance2:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t2.micro
+      InstanceType: ap-southeast-1b
       ImageId: ami-08be951cec06726be
-      KeyName: myKeyPair
+      KeyName: zabbixkp
+      SecurityGroup: 
+        - !Ref cloudformation_sg
+
+  cloudformation_sg:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH Service
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 0.0.0.0/0
