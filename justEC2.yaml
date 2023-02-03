@@ -7,8 +7,7 @@ Resources:
       InstanceType: t2.micro
       ImageId: ami-08be951cec06726be
       KeyName: zabbixkp
-      SecurityGroup:
-        - !Ref: cloudformation_sg
+      SecurityGroup: cloudformation_sg
 
   EC2Instance2:
     Type: AWS::EC2::Instance
@@ -16,8 +15,7 @@ Resources:
       InstanceType: ap-southeast-1b
       ImageId: ami-08be951cec06726be
       KeyName: zabbixkp
-      SecurityGroup: 
-        - !Ref cloudformation_sg
+      SecurityGroup: cloudformation_sg
 
   cloudformation_sg:
     Type: AWS::EC2::SecurityGroup
