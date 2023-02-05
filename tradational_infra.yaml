@@ -1,0 +1,213 @@
+Resources:
+  CFD5GO5:
+    Type: 'AWS::CloudFront::Distribution'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 96095b68-cccc-4b7a-8b99-687b7249fc15
+    DependsOn:
+      - ELBV2LB2E3A
+  ELBV2LB2E3A:
+    Type: 'AWS::ElasticLoadBalancingV2::LoadBalancer'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 9ff9d577-848f-4d35-8213-de6d57b93a9d
+  ELBV2TG1PV7P:
+    Type: 'AWS::ElasticLoadBalancingV2::TargetGroup'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 8babf910-8a47-4929-8bef-a1196c0e429a
+    DependsOn:
+      - EC2I4GQ6G
+      - EC2I2XM0X
+      - ELBV2LB2E3A
+  EC2I4GQ6G:
+    Type: 'AWS::EC2::Instance'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: d63b03bd-331b-4220-bded-9220d38ebe3b
+  EC2I2XM0X:
+    Type: 'AWS::EC2::Instance'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c6e00131-ef11-472b-bc20-8ff28fa8495e
+  EC2KP3QRJQ:
+    Type: 'AWS::EC2::KeyPair'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 067af104-b15d-48fc-8254-be5a553da77e
+    DependsOn:
+      - EC2I2XM0X
+      - EC2I4GQ6G
+  CWD2QW3V:
+    Type: 'AWS::CloudWatch::Dashboard'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 2456133a-8161-4dd5-b5f0-cb1404367f15
+    DependsOn:
+      - EC2I4GQ6G
+      - EC2I2XM0X
+      - CWA3UH5X
+  CWA3UH5X:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4e806202-09b6-498a-8c0f-f6519f6ecf2a
+    DependsOn:
+      - SNST39DP8
+  SNST39DP8:
+    Type: 'AWS::SNS::Topic'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 71a4eb1e-afcd-40f8-b015-e8fb02347464
+    DependsOn:
+      - SNSS1P2O2
+  SNSS1P2O2:
+    Type: 'AWS::SNS::Subscription'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3
+Metadata:
+  'AWS::CloudFormation::Designer':
+    c6e00131-ef11-472b-bc20-8ff28fa8495e:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -20
+        'y': 210
+      z: 1
+      embeds: []
+    d63b03bd-331b-4220-bded-9220d38ebe3b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -20
+        'y': 30
+      z: 1
+      embeds: []
+    067af104-b15d-48fc-8254-be5a553da77e:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 140
+        'y': 150
+      z: 1
+      embeds: []
+      dependson:
+        - c6e00131-ef11-472b-bc20-8ff28fa8495e
+        - d63b03bd-331b-4220-bded-9220d38ebe3b
+    9ff9d577-848f-4d35-8213-de6d57b93a9d:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -230
+        'y': 100
+      z: 1
+      embeds: []
+    8babf910-8a47-4929-8bef-a1196c0e429a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -120
+        'y': 100
+      z: 1
+      embeds: []
+      dependson:
+        - d63b03bd-331b-4220-bded-9220d38ebe3b
+        - c6e00131-ef11-472b-bc20-8ff28fa8495e
+        - 9ff9d577-848f-4d35-8213-de6d57b93a9d
+    96095b68-cccc-4b7a-8b99-687b7249fc15:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: -360
+        'y': 100
+      z: 1
+      embeds: []
+      dependson:
+        - 9ff9d577-848f-4d35-8213-de6d57b93a9d
+    2456133a-8161-4dd5-b5f0-cb1404367f15:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 141.27222153944936
+        'y': 58.176362281965226
+      z: 0
+      dependson:
+        - d63b03bd-331b-4220-bded-9220d38ebe3b
+        - c6e00131-ef11-472b-bc20-8ff28fa8495e
+        - 4e806202-09b6-498a-8c0f-f6519f6ecf2a
+    4a22d970-20ab-464e-b07a-aa71e428aadb:
+      source:
+        id: 2456133a-8161-4dd5-b5f0-cb1404367f15
+      target:
+        id: d63b03bd-331b-4220-bded-9220d38ebe3b
+      z: 11
+    ea0c7484-25d6-47d6-9b21-acebdb01625f:
+      source:
+        id: 2456133a-8161-4dd5-b5f0-cb1404367f15
+      target:
+        id: c6e00131-ef11-472b-bc20-8ff28fa8495e
+      z: 12
+    4e806202-09b6-498a-8c0f-f6519f6ecf2a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 240.73331598912924
+        'y': -6.855891781287002
+      z: 0
+      dependson:
+        - 71a4eb1e-afcd-40f8-b015-e8fb02347464
+    56df703f-a519-4830-8d9f-c880bcecf201:
+      source:
+        id: 2456133a-8161-4dd5-b5f0-cb1404367f15
+      target:
+        id: 4e806202-09b6-498a-8c0f-f6519f6ecf2a
+      z: 13
+    71a4eb1e-afcd-40f8-b015-e8fb02347464:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 348.801620535416
+        'y': -10.681320314995675
+      z: 0
+      dependson:
+        - 1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3
+    da2f8fa0-9a08-41e8-9a29-84bd38ae5327:
+      source:
+        id: 4e806202-09b6-498a-8c0f-f6519f6ecf2a
+      target:
+        id: 71a4eb1e-afcd-40f8-b015-e8fb02347464
+      z: 14
+    1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 460
+        'y': -10
+      z: 0
+    bd5974e9-cb28-4e6b-9938-773eb91a835b:
+      source:
+        id: 71a4eb1e-afcd-40f8-b015-e8fb02347464
+      target:
+        id: 1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3
+      z: 15
