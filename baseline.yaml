@@ -1,0 +1,9 @@
+---
+  - name: Install_net-tools
+    hosts: 
+    tasks: 
+      - name: Check and install net-tools
+        apt:
+          name: net-tools
+          state: latest
+          
