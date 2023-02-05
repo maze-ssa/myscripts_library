@@ -76,6 +76,27 @@ Resources:
     Metadata:
       'AWS::CloudFormation::Designer':
         id: 1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3
+  EC2VPC5C0EH:
+    Type: 'AWS::EC2::VPC'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: db100e65-9ee9-449f-b376-6581beff50fa
+  EC2FL1BDWP:
+    Type: 'AWS::EC2::FlowLog'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 25882c4c-6d51-4467-bd35-43d7689df6c1
+    DependsOn:
+      - EC2VPC5C0EH
+      - S3B10LMO
+  S3B10LMO:
+    Type: 'AWS::S3::Bucket'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: cc0b32fb-6a10-4556-870c-4404786ed7d0
 Metadata:
   'AWS::CloudFormation::Designer':
     c6e00131-ef11-472b-bc20-8ff28fa8495e:
@@ -211,3 +232,42 @@ Metadata:
       target:
         id: 1b0ef96f-89ee-4de4-bbe4-71d8f0903ae3
       z: 15
+    db100e65-9ee9-449f-b376-6581beff50fa:
+      size:
+        width: 80
+        height: 310
+      position:
+        x: -30
+        'y': -10
+      z: 0
+    25882c4c-6d51-4467-bd35-43d7689df6c1:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 40
+        'y': -120
+      z: 0
+      dependson:
+        - db100e65-9ee9-449f-b376-6581beff50fa
+        - cc0b32fb-6a10-4556-870c-4404786ed7d0
+    cc0b32fb-6a10-4556-870c-4404786ed7d0:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 170
+        'y': -120
+      z: 0
+    1c587b5f-9e15-40ea-9c0c-0709a4d7f784:
+      source:
+        id: 25882c4c-6d51-4467-bd35-43d7689df6c1
+      target:
+        id: db100e65-9ee9-449f-b376-6581beff50fa
+      z: 18
+    2998a054-1d27-4bc7-bb12-a9a8361e940e:
+      source:
+        id: 25882c4c-6d51-4467-bd35-43d7689df6c1
+      target:
+        id: cc0b32fb-6a10-4556-870c-4404786ed7d0
+      z: 19
