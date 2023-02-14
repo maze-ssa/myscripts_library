@@ -6,4 +6,9 @@
         apt:
           name: net-tools
           state: latest
+      - name: Check and install traceroute
+        apt:
+          name: traceroute
+          state: latest
+          
           

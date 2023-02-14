@@ -4,8 +4,17 @@ provider "aws" {
   secret_key = ""
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "websvr1" {
     ami = ""
     instance_type = "t2.micro"
+    availability_zone = 
+    key_name = 
   
+}
+
+resource "aws_instance"  "websvr2" {
+  ami = ""
+  instance_type = "t2.micro"
+  availability_zone = 
+  key_name = 
 }
