@@ -1,0 +1,28 @@
+---
+  - name: Install_docker_plugins
+    hosts: 
+    tasks: 
+      - name: Update Repo list
+        shell: "apt update"
+
+      - name: Check and install net-tools
+        apt:
+          name: net-tools
+          state: latest
+
+      - name: Check and install traceroute
+        apt:
+          name: traceroute
+          state: latest
+      
+      - name: Install htop for interactive system monitoring
+        apt:
+          name: htop
+          state: latest
+
+      - name: Install docker.io
+        apt:
+          name: docker.io
+          state: latest
+          
+          
