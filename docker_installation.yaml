@@ -1,6 +1,6 @@
 ---
   - name: Install_docker_plugins
-    hosts: 
+    hosts: uat_servers
     tasks: 
       - name: Update Repo list
         shell: "apt update"
