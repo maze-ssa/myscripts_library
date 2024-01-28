@@ -3,9 +3,6 @@
     hosts: uatservers
     become: yes
     tasks: 
-      - name: Update Repo list
-        shell: "apt update"
-
       - name: Check and install net-tools
         apt:
           name: net-tools
