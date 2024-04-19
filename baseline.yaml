@@ -1,6 +1,6 @@
 ---
   - name: Install_net-tools
-    hosts: 
+    hosts: uatservers
     tasks: 
       - name: Check and install net-tools
         apt:
