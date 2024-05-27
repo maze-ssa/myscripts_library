@@ -26,5 +26,6 @@ def copy_and_zip():
 
     print(f"Files zipped to {zip_path}")
 
+#Finale
 if __name__ == "__main__":
     copy_and_zip()
