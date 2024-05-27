@@ -1,6 +1,7 @@
 import os
 import shutil
 import zipfile
+import datetime
 
 def copy_and_zip():
     source_dir = "/home/ubuntu/test"
