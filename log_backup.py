@@ -11,23 +11,20 @@ def copy_and_zip():
     if not os.path.exists(dest_dir):
         os.makedirs(dest_dir)
 
-    # Copy all files and zips from source to destination
-    for item in os.listdir(source_dir):
-        src = os.path.join(source_dir, item)
-        dst = os.path.join(dest_dir, item)
-        if os.path.isfile(src):
-            shutil.copy2(src, dst)
-        elif os.path.isdir(src):
-            shutil.copytree(src, dst)
+    # Get the current date and time
+    current_datetime = datetime.datetime.now()
 
-    # Zip the destination directory
-    zip_filename = f"{dest_dir}_" + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S")) + ".zip"
-    with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zf:
-        for root, dirs, files in os.walk(dest_dir):
+    # Format the zip file name
+    zip_filename = f"GB_PMX_VM_CONF_{current_datetime.strftime('%Y%m%d%H%M%S')}.zip"
+    zip_path = os.path.join(dest_dir, zip_filename)
+
+    # Zip the source directory
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for root, dirs, files in os.walk(source_dir):
             for file in files:
-                zf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(dest_dir, "..")))
+                zf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(source_dir, "..")))
 
-    print(f"Files copied and zipped to {zip_filename}")
+    print(f"Files zipped to {zip_path}")
 
 if __name__ == "__main__":
     copy_and_zip()
