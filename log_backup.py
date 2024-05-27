@@ -23,5 +23,5 @@ with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file in files:
             file_path = os.path.join(root, file)
             zipf.write(file_path, arcname=os.path.relpath(file_path, source_dir))
-
+#Finale Phase
 print(f'Files copied to {destination_dir} and zipped as {zip_filename}')
