@@ -2,26 +2,31 @@ import os
 import shutil
 import zipfile
 
-# Define the source and destination directories
-source_dir = '/home/ubuntu/test/'
-destination_dir = '/weekly_vm_config_config/'
+def copy_and_zip():
+    source_dir = "/home/ubuntu/test"
+    dest_dir = "/weekly_vm_config_backup"
 
-# Check if the destination directory exists, and create it if it doesn't
-if not os.path.exists(destination_dir):
-    os.makedirs(destination_dir)
+    # Create the destination directory if it doesn't exist
+    if not os.path.exists(dest_dir):
+        os.makedirs(dest_dir)
 
-# Define the zip file name with the current date
-zip_filename = f'weekly_vm_config_{zipfile.ZipFile.nametime(time.gmtime())}.zip'
+    # Copy all files and zips from source to destination
+    for item in os.listdir(source_dir):
+        src = os.path.join(source_dir, item)
+        dst = os.path.join(dest_dir, item)
+        if os.path.isfile(src):
+            shutil.copy2(src, dst)
+        elif os.path.isdir(src):
+            shutil.copytree(src, dst)
 
-# Define the full path of the zip file
-zip_path = os.path.join(destination_dir, zip_filename)
+    # Zip the destination directory
+    zip_filename = f"{dest_dir}_" + str(datetime.datetime.now().strftime("%Y%m%d%H%M%S")) + ".zip"
+    with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zf:
+        for root, dirs, files in os.walk(dest_dir):
+            for file in files:
+                zf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), os.path.join(dest_dir, "..")))
 
-# Create a new zip file
-with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-    # Walk through the source directory and copy all files to the zip file
-    for root, dirs, files in os.walk(source_dir):
-        for file in files:
-            file_path = os.path.join(root, file)
-            zipf.write(file_path, arcname=os.path.relpath(file_path, source_dir))
-#Finale Phase
-print(f'Files copied to {destination_dir} and zipped as {zip_filename}')
+    print(f"Files copied and zipped to {zip_filename}")
+
+if __name__ == "__main__":
+    copy_and_zip()
