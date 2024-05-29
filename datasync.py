@@ -9,6 +9,12 @@ class FileChangeHandler(FileSystemEventHandler):
         self.src = src
         self.dst = dst
 
+    def initialize_sync(self):
+        """Copy the source directory to the destination directory."""
+        if os.path.exists(self.dst):
+            shutil.rmtree(self.dst)
+        shutil.copytree(self.src, self.dst)
+
     def on_modified(self, event):
         if not event.is_directory:
             self.sync_files_and_folders()
@@ -28,6 +34,9 @@ dst = '/home/ubuntu/fsx'
 # Create the observer and handler
 event_handler = FileChangeHandler(src, dst)
 observer = Observer()
+
+# Initialize the sync by copying the source directory to the destination directory
+event_handler.initialize_sync()
 
 # Schedule the observer to run in a separate thread
 observer.schedule(event_handler, path=src, recursive=True)
