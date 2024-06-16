@@ -2,4 +2,4 @@
 
 ## Welcome!!!! 
 
-The intention of this repo has a collection of scripts designed for various scripting needs in Bash, Python, PowerShell, and more. This repository is for those who are seeking practical examples to enhance their automation, configuration management, or workflow optimization tasks.. 
+You will see a collection of scripts designed for various scripting, and automation by creating with Bash, Python, PowerShell, and more. The intention of this git repo is for those who are seeking practical examples to enhance their automation, configuration management, or workflow optimization tasks.. 
